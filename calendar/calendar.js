@@ -25,6 +25,7 @@ function Calendar(month, year){
   this.html = '';
 }
 
+
 Calendar.prototype.generateHTML = function (){
   var firstDay = new Date(this.year, this.month, 1);
   var startingDay = firstDay.getDay();

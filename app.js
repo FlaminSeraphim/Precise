@@ -13,52 +13,51 @@ mongoose.connection('mongodb://localhost/my_database', function(){
 });
 
 //Course Schema setting restrictions on document
-var Course = new mongoose.Schema({
+var courseSchema = new mongoose.Schema({
   name: String,
   description: String,
+  training: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "training"
+  }],
 });
 
 //User Schema setting restrictions on document
-var User = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
   firstname: String,
   lastname: String,
   username: String,
   password: String,
-  Instructor: Boolean
+  Instructor: Boolean,
+  trainingsTaught: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "training"
+  }],
+  scheduledTrainings: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "training"
+  }]
 });
 
-//Class Schema setting restrictions on document
-var classSchema = new mongoose.Schema({
+//Training Schema setting restrictions on document
+var trainingSchema = new mongoose.Schema({
   date: Date,
-  courses: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Course"
-  }],
-  Instructor: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
-  }],
   eupapassed: Boolean,
-  usersScheduled: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
-  }],
   location: String
 });
 
-//creating model and collection name of Classes
-var Class = mongoose.model("Class", classSchema);
+//creating model and collection name of training
+var training = mongoose.model("training", trainingSchema);
 
-var newClass = new Class ({
+var newTraining = new training ({
   date: 03/22/2016,
-
 });
 
-newClass.save(function(err, savedClass){
+newTraining.save(function(err, savedTraining){
   if(err){
     console.log(err);
   } else {
-    console.log(savedClass);
+    console.log(savedTraining);
   }
 });
 
