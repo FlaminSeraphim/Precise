@@ -83,17 +83,45 @@ var trainingSchema = new mongoose.Schema({
 //creating model and collection name of training
 var training = mongoose.model("training", trainingSchema);
 
-training.create({
-  date: 03/22/2016,
-  location: 'HIT',
-
-}, function(err, training){
-
-  if(err){
-    console.log(err);
-  } else {
-  }
-});
+// training.create({
+//   date: 03/22/2016,
+//   location: 'HIT',
+// }, function(err, training){
+//
+  //This function looks up the course and inserts the training into the courses array.
+//   course.findOne({name: "Test Course"}, function(err, foundCourse){
+//     if(err){
+//       console.log(err);
+//     } else {
+//       foundCourse.training.push(training);
+//       foundCourse.save(function(err, data){
+//         if(err){
+//           console.log(err);
+//         } else {
+//           console.log(data);
+//         }
+//       });
+//     }
+//   });
+//
+//   //This is taking the training and putting it in the users document for brian.
+//   user.findOne({firstname: "Brian"}, function(err, foundUser){
+//     if(err){
+//       console.log(err);
+//     } else {
+//       foundUser.trainingsTaught.push(training);
+//       foundUser.passedTrainings.push(training);
+//       foundUser.scheduledTrainings.push(training);
+//       foundUser.save(function(err, data){
+//         if(err){
+//           console.log(err);
+//         } else {
+//           console.log(data);
+//         }
+//       });
+//     }
+//   });
+// });
 
 
 /////////////////////////
