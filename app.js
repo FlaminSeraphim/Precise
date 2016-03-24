@@ -8,7 +8,7 @@ var  mongoose = require('mongoose');
 //////////////////
 
 //connection to database its local host because its on my machine.
-mongoose.connection('mongodb://localhost/my_database', function(){
+mongoose.connect('mongodb://localhost/my_database', function(){
   console.log('Successful Connection to Server.');
 });
 
@@ -22,6 +22,19 @@ var courseSchema = new mongoose.Schema({
   }],
 });
 
+var course = mongoose.model("course", courseSchema);
+
+// course.create({
+//   name: 'Test Course',
+//   description: 'This is the description for the Test Course'
+// }, function(err, course){
+//   if (err){
+//     console.log(err);
+//   } else {
+//     console.log(course);
+//   }
+// });
+
 //User Schema setting restrictions on document
 var userSchema = new mongoose.Schema({
   firstname: String,
@@ -33,33 +46,48 @@ var userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "training"
   }],
+  passedTrainings: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "training"
+  }],
   scheduledTrainings: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "training"
   }]
 });
 
+
+
 //Training Schema setting restrictions on document
+//optional pushes to arrays are the (user table) trainingsTaught,
+//passedTrainings, scheduledTrainings, and (courses table) trainings
 var trainingSchema = new mongoose.Schema({
   date: Date,
-  eupapassed: Boolean,
   location: String
 });
 
 //creating model and collection name of training
 var training = mongoose.model("training", trainingSchema);
+//
+// training.create({
+//   date: 03/22/2016,
+//   eupaPassed: true,
+//   location: 'HIT'
+// }, function(err, training){
+//
+//   if(err){
+//     console.log(err);
+//   } else {
+//   }
+// });
 
-var newTraining = new training ({
-  date: 03/22/2016,
-});
-
-newTraining.save(function(err, savedTraining){
-  if(err){
-    console.log(err);
-  } else {
-    console.log(savedTraining);
-  }
-});
+// newTraining.save(function(err, savedTraining){
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log(savedTraining);
+//   }
+// });
 
 /////////////////////////
 //This is the get and post stuff area

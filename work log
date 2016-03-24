@@ -4,6 +4,8 @@ sub sub goal is: get mongoose integrated.
 
 Today's goal: is to get a working calendar that I don't hate how it looks.
 
+Goal: Get schema working properly where it creates the collection and 
+
 
 Work Log:
 
@@ -19,3 +21,11 @@ Worked on getting what I need for the mongoose data base.
 I have started working on the calendar it's self I wanted to get some progress on that so I could have a home page.
 
 Create a calendar with divs instead of tr's.
+
+3/23
+I worked on the schemas I created the correct way to do a reference. I'm just a little confused
+on how I'm going to push the reference into one an existing document, and two doing multiple references at one time.
+
+3/24
+Today I am going to finalize my schemas I will then work on it creating the collections.
+After that I will work on the CRUD functions of course training and user documents
