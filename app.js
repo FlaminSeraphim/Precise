@@ -41,7 +41,7 @@ var userSchema = new mongoose.Schema({
   lastname: String,
   username: String,
   password: String,
-  Instructor: Boolean,
+  instructor: Boolean,
   trainingsTaught: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "training"
@@ -56,7 +56,21 @@ var userSchema = new mongoose.Schema({
   }]
 });
 
+var user = mongoose.model("user", userSchema);
 
+// user.create({
+//   firstname: 'Brian',
+//   lastname: 'Coates',
+//   username: 'bmcoate',
+//   password: '1234',
+//   instructor: true
+// }, function(err, user){
+//   if(err){
+//     console.log(err);
+//   } else {
+//     console.log(user);
+//   }
+// });
 
 //Training Schema setting restrictions on document
 //optional pushes to arrays are the (user table) trainingsTaught,
@@ -68,26 +82,19 @@ var trainingSchema = new mongoose.Schema({
 
 //creating model and collection name of training
 var training = mongoose.model("training", trainingSchema);
-//
-// training.create({
-//   date: 03/22/2016,
-//   eupaPassed: true,
-//   location: 'HIT'
-// }, function(err, training){
-//
-//   if(err){
-//     console.log(err);
-//   } else {
-//   }
-// });
 
-// newTraining.save(function(err, savedTraining){
-//   if(err){
-//     console.log(err);
-//   } else {
-//     console.log(savedTraining);
-//   }
-// });
+training.create({
+  date: 03/22/2016,
+  location: 'HIT',
+
+}, function(err, training){
+
+  if(err){
+    console.log(err);
+  } else {
+  }
+});
+
 
 /////////////////////////
 //This is the get and post stuff area
