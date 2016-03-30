@@ -3,14 +3,18 @@ var app = express();
 var ejs = require ('ejs');
 var  mongoose = require('mongoose');
 
+
+
 //////////////////
 //Schema and models and database connection
 //////////////////
 
 //connection to database its local host because its on my machine.
 mongoose.connect('mongodb://localhost/my_database', function(){
-  console.log('Successful Connection to Server.');
+  console.log('Successful Connection to Data Base Server.');
 });
+app.use(express.static('public'));
+app.set('view engine', 'ejs');
 
 //Course Schema setting restrictions on document
 var courseSchema = new mongoose.Schema({
@@ -75,6 +79,7 @@ var user = mongoose.model("user", userSchema);
 //Training Schema setting restrictions on document
 //optional pushes to arrays are the (user table) trainingsTaught,
 //passedTrainings, scheduledTrainings, and (courses table) trainings
+
 var trainingSchema = new mongoose.Schema({
   date: Date,
   location: String
@@ -127,10 +132,20 @@ var training = mongoose.model("training", trainingSchema);
 /////////////////////////
 //This is the get and post stuff area
 ////////////////////////
-app.set('view engine', 'ejs');
 
 app.get('/', function(req, res){
-  res.render('home');
+    res.redirect('/training');
+});
+
+// This route is for the sh
+app.get('/training', function(req, res){
+  course.find({}).populate("training").exec(function(err, training){
+    if(err){
+      console.log(err);
+    } else {
+    res.render('home', {training: training});
+    }
+  });
 });
 
 app.get('*', function(req, res){
