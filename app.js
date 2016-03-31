@@ -82,7 +82,8 @@ var user = mongoose.model("user", userSchema);
 
 var trainingSchema = new mongoose.Schema({
   date: Date,
-  location: String
+  location: String,
+  time: Number
 });
 
 //creating model and collection name of training
@@ -90,6 +91,7 @@ var training = mongoose.model("training", trainingSchema);
 
 // training.create({
 //   date: 03/30/2016,
+// adding new field time: 03:00am
 //   location: 'Barracuda swimming tank',
 // }, function(err, training){
 //
