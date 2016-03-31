@@ -29,8 +29,8 @@ var courseSchema = new mongoose.Schema({
 var course = mongoose.model("course", courseSchema);
 
 // course.create({
-//   name: 'Test Course',
-//   description: 'This is the description for the Test Course'
+//   name: 'Barracuda Course',
+//   description: 'This is a course about Barracudas and their natural habitats'
 // }, function(err, course){
 //   if (err){
 //     console.log(err);
@@ -63,11 +63,11 @@ var userSchema = new mongoose.Schema({
 var user = mongoose.model("user", userSchema);
 
 // user.create({
-//   firstname: 'Brian',
+//   firstname: 'Lauren',
 //   lastname: 'Coates',
-//   username: 'bmcoate',
+//   username: 'lcoates',
 //   password: '1234',
-//   instructor: true
+//   instructor: false
 // }, function(err, user){
 //   if(err){
 //     console.log(err);
@@ -89,12 +89,12 @@ var trainingSchema = new mongoose.Schema({
 var training = mongoose.model("training", trainingSchema);
 
 // training.create({
-//   date: 03/22/2016,
-//   location: 'HIT',
+//   date: 03/30/2016,
+//   location: 'Barracuda swimming tank',
 // }, function(err, training){
 //
-  //This function looks up the course and inserts the training into the courses array.
-//   course.findOne({name: "Test Course"}, function(err, foundCourse){
+//   //This function looks up the course and inserts the training into the courses array.
+//   course.findOne({name: "Barracuda Course"}, function(err, foundCourse){
 //     if(err){
 //       console.log(err);
 //     } else {
@@ -146,6 +146,10 @@ app.get('/training', function(req, res){
     res.render('home', {training: training});
     }
   });
+});
+
+app.get('/training/new', function(req, res){
+  res.render('newTraining');
 });
 
 app.get('*', function(req, res){

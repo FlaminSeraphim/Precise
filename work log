@@ -34,3 +34,8 @@ I have created my first collection in my database. I'm putting in a ticket for I
 I'm going to have them name the server HIT-precise-prod and HIT-precise-test. I have made some commits to github.
 Now going to work on getting the training and user collections created. It was pretty exciting to get my first collection
 on my local server done. Once I get that data in the database I will move forward with creating the CRUD routes.
+
+3/31
+I have been able to get the trainings from the server on to the home.ejs file which will be my index/show
+route for my trainings. I have also made it so that my header and footer are included as partials. I added
+the new route for trainings and will make the form next to be populated into the node server and inject into the mongodb.

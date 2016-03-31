@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>This is my app brah!</title>
-  </head>
-  <body>
-    <h1>EJSSSSS</h1>
+<% include ./partials/header %>
+    <h1>Precise</h1>
 
-
+    <% var trainingClass = training %>
 
     <% training.forEach(function(training){ %>
 
-      <h1> <%= training %> </h1>
+      <h1> <%= training.name %> </h1>
+      <p> <%= training.description %> </p>
+      <% training.training.forEach(function(training){ %>
+        <h2> <%= training.location %> </h2>
+        <h4> <%= training.date %> </h4>
+      <% }); %>
 
     <% }); %>
 
-  </body>
-</html>
+<% include ./partials/footer %>
