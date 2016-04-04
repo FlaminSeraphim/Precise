@@ -2,11 +2,14 @@
 
   <h1>This is the new training page where you can create new trianings.</h1>
 
-  <form>
+  <form action="/training" method="POST">
     <p>Training Date: <input type="date" name="trainingDate"> </p>
     <p>Training Time: <input type="time" name="trainingDate"> </p>
     <p>Training Description: <input type="text" name="trainingDesc"> </p>
     <input type="submit" value="Create Training">
+    <input type="submit" value="Add Another">
   </form>
+
+
 
 <% include ./partials/footer %>
