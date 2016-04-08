@@ -20,18 +20,18 @@ var courseData = [
 
 var trainingData = [
   {
-    date: 04/08/2016,
-    time: 0800,
+    date: '04/08/2016',
+    time: '08:00',
     location: 'Barracuda swimming tank'
   },
   {
-    date: 04/10/2016,
-    time: 1330,
+    date: '04/10/2016',
+    time: '13:30',
     location: 'HIT offices'
   },
   {
-    date: 04/12/2016,
-    time: 1330,
+    date: '04/12/2016',
+    time: '1330',
     location: 'Yo Mommas house'
   }
 ];
@@ -48,7 +48,7 @@ function seedDB(){
         if (err){
           console.log(err);
           } else {
-          console.log(course);
+          //console.log(course);
           }
       }, function(){
         training.remove({}, function(err){
@@ -65,7 +65,7 @@ function seedDB(){
                     if(err){
                       console.log(err);
                     } else {
-                      console.log(data);
+                      //console.log(data);
                     }
                   });
                 }

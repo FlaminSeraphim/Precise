@@ -1,11 +1,12 @@
-var express   = require ('express');
-var app       = express();
-var ejs       = require ('ejs');
-var mongoose  = require('mongoose');
-var course    = require("./models/course");
-var training  = require("./models/training");
-var user      = require("./models/user");
-var seedDB    = require("./seeds.js");
+var express     = require ('express');
+var app         = express();
+var ejs         = require ('ejs');
+var mongoose    = require('mongoose');
+var course      = require("./models/course");
+var training    = require("./models/training");
+var user        = require("./models/user");
+var seedDB      = require("./seeds.js");
+var bodyParser  = require("body-parser");
 
 
 
@@ -20,18 +21,21 @@ mongoose.connect('mongodb://localhost/Precise', function(){
 });
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
 
 seedDB();
+
 
 /////////////////////////
 //This is the get and post stuff area
 ////////////////////////
 
+// Route ROUTE
 app.get('/', function(req, res){
     res.redirect('/training');
 });
 
-// This route is for the sh
+// TRAINING INDEX ROUTE This route to show all trainings
 app.get('/training', function(req, res){
   course.find({}).populate("training").exec(function(err, training){
     if(err){
@@ -42,10 +46,49 @@ app.get('/training', function(req, res){
   });
 });
 
+// TRAINING NEW ROUTE this is the new route it will take you to the form.
 app.get('/training/new', function(req, res){
-  res.render('newTraining');
+  course.find({}).populate("training").exec(function(err, training){
+    if(err){
+      console.log(err);
+    } else {
+    res.render('newTraining', {training: training});
+  }
+});
 });
 
+// TRAINING CREATE ROUTE
+app.post("/training", function(req, res){
+
+  training.create(req.body.training, function (err, training){
+    //This function looks up the course and inserts the training into the courses array.
+    course.findById(req.body.course.name, function (err, foundCourse){
+      if(err){
+        console.log(err);
+      } else {
+        foundCourse.training.push(training._id);
+        foundCourse.save(function(err, data){
+          if(err){
+            console.log(err);
+          } else {
+            console.log(data);
+            res.redirect("/training");
+          }
+        });
+      }
+    });
+  });
+});
+
+// TRAINING SHOW ROUTE
+
+// TRAINING EDIT ROUTE
+
+// TRAINING UPDATE ROUTE
+
+// TRAINING DELETE ROUTE
+
+// TRAINING BAD ROUTE
 app.get('*', function(req, res){
   res.send('bad route');
 });

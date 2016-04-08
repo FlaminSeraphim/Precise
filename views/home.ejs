@@ -4,8 +4,8 @@
     <% var trainingClass = training %>
 
     <% training.forEach(function(training){ %>
-
       <h1> <%= training.name %> </h1>
+      <h1> <%= training._id %> </h1>
       <p> <%= training.description %> </p>
       <% training.training.forEach(function(training){ %>
         <h2> <%= training.location %> </h2>

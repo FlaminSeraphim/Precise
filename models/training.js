@@ -1,9 +1,9 @@
 var mongoose = require("mongoose");
 
 var trainingSchema = new mongoose.Schema({
-  date: Date,
+  date: String,
   location: String,
-  time: Number
+  time: String
 });
 
 
