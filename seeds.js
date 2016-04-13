@@ -53,7 +53,7 @@ function seedDB(){
       }, function(){
         training.remove({}, function(err){
           trainingData.forEach(function(seed){
-            training.create(seed,function(err, training){
+            training.create(seed, function(err, training){
 
               //This function looks up the course and inserts the training into the courses array.
               course.findOne({name: "Barracuda Course"}, function(err, foundCourse){
@@ -67,6 +67,19 @@ function seedDB(){
                     } else {
                       //console.log(data);
                     }
+                    training.course.push(foundCourse._id);
+                    training.save(function(err, data){
+                      if(err){
+                        console.log(err);
+                      }
+
+                    training.users.push(['5704150af78811cc29e7a3e8']);
+                    training.save(function(err, data){
+                      if(err){
+                        console.log(err);
+                      }
+                    });
+                    });
                   });
                 }
               });

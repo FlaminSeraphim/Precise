@@ -67,6 +67,7 @@ app.post("/training", function(req, res){
         console.log(err);
       } else {
         foundCourse.training.push(training._id);
+        training.course.push(foundCourse._id);
         foundCourse.save(function(err, data){
           if(err){
             console.log(err);
@@ -81,6 +82,17 @@ app.post("/training", function(req, res){
 });
 
 // TRAINING SHOW ROUTE
+app.get("/training/:id", function(req, res){
+  //var course =   course.findById(req.body.course.name, function (err, foundCourse)
+  training.findById(req.params.id, function(err, foundTraining){
+    if (err){
+      console.log(err);
+      //res.redirect("/training");
+    } else {
+      res.render("showTraining", {training: foundTraining});
+    }
+  });
+});
 
 // TRAINING EDIT ROUTE
 
