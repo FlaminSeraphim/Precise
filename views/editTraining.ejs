@@ -1,0 +1,12 @@
+<% include ./partials/header %>
+
+  <form action="/training/<%= training._id %>?_method=PUT" method="POST">
+    <input type="text" name="training[location]" value="<%= training.location %>">
+    <input type="text" name="training[time]" value="<%= training.time %>">
+    <input type="text" name="training[date]" value="<%= training.date %>">
+    <input type="text" value="<%= course.name %>" readonly>
+    <input type="text" value="<%= users %>" readonly>
+    <input type="submit">
+  </form>
+
+<% include ./partials/footer %>

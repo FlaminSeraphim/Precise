@@ -4,8 +4,13 @@
   <p>Location: <%= training.location %></p>
   <p>Time: <%= training.time %></p>
   <p>Date: <%= training.date %></p>
-  <p>Course: <%= training.course %></p>
-  <p>Users: <%= training.users %></p>
+  <p>Course: <%= course.name %></p>
+  <p>Users: <%= users %></p>
+
+  <form action="/training/<%= training._id %>?_method=DELETE" method="POST">
+    <button> Delete </button>
+  </form>
+
 
 
 

@@ -1,12 +1,13 @@
-var express     = require ('express');
-var app         = express();
-var ejs         = require ('ejs');
-var mongoose    = require('mongoose');
-var course      = require("./models/course");
-var training    = require("./models/training");
-var user        = require("./models/user");
-var seedDB      = require("./seeds.js");
-var bodyParser  = require("body-parser");
+var express         = require ('express');
+var app             = express();
+var ejs             = require ('ejs');
+var mongoose        = require('mongoose');
+var course          = require("./models/course");
+var training        = require("./models/training");
+var user            = require("./models/user");
+var seedDB          = require("./seeds.js");
+var bodyParser      = require("body-parser");
+var methodOverride  = require("method-override");
 
 
 
@@ -22,6 +23,7 @@ mongoose.connect('mongodb://localhost/Precise', function(){
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
 
 seedDB();
 
@@ -83,22 +85,57 @@ app.post("/training", function(req, res){
 
 // TRAINING SHOW ROUTE
 app.get("/training/:id", function(req, res){
-  //var course =   course.findById(req.body.course.name, function (err, foundCourse)
-  training.findById(req.params.id, function(err, foundTraining){
-    if (err){
-      console.log(err);
-      //res.redirect("/training");
-    } else {
-      res.render("showTraining", {training: foundTraining});
-    }
+  course.findOne({'training': req.params.id}, function(err, foundCourse){
+    user.findOne({'scheduledTrainings': req.params.id}, function(err, foundUsers){
+      training.findById(req.params.id, function(err, foundTraining){
+        if (err){
+          console.log(err);
+        } else {
+          res.render("showTraining", {training: foundTraining, course: foundCourse, users: foundUsers});
+        }
+      });
+    });
   });
 });
 
 // TRAINING EDIT ROUTE
+app.get("/training/:id/edit", function(req, res){
+  course.findOne({'training': req.params.id}, function(err, foundCourse){
+    user.findOne({'scheduledTrainings': req.params.id}, function(err, foundUsers){
+      training.findById(req.params.id, function(err, foundTraining){
+        if (err){
+          console.log(err);
+        } else {
+          res.render("editTraining", {training: foundTraining, course: foundCourse, users: foundUsers});
+        }
+      });
+    });
+  });
+});
 
 // TRAINING UPDATE ROUTE
+app.put("/training/:id", function(req, res){
+  training.findByIdAndUpdate(req.params.id, req.body.training, function(err, updatedTraining){
+    if(err){
+      console.log(err);
+      res.redirect("/training");
+    }else{
+      res.redirect("/training/" + req.params.id);
+    }
+  });
+});
 
 // TRAINING DELETE ROUTE
+app.delete("/training/:id", function(req, res){
+  training.findByIdAndRemove(req.params.id, function(err){
+    if(err){
+      console.log(err);
+      res.redirect("/training");
+    }else{
+      res.redirect("/training");
+    }
+  });
+});
 
 // TRAINING BAD ROUTE
 app.get('*', function(req, res){
