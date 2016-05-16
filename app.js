@@ -218,8 +218,6 @@ app.get("/users", function(req, res){
       }
     });
   });
-
-  res.render("indexUsers");
 });
 
 // User New
