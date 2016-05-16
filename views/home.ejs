@@ -5,7 +5,7 @@
 
     <% training.forEach(function(training){ %>
      <!-- training description is the course name -->
-      <h1> <%= training.description %> </h1>
+      <h1> <%= training.name %> </h1>
       <% training.training.forEach(function(training){ %>
         <h2><a href="/training/<%= training._id %>"><%= training.location %></a></h2>
         <h4> <%= training.date %> </h4>

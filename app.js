@@ -43,7 +43,8 @@ app.get('/training', function(req, res){
     if(err){
       console.log(err);
     } else {
-    res.render('home', {training: training});
+      console.log(training);
+      res.render('home', {training: training});
     }
   });
 });
@@ -137,7 +138,96 @@ app.delete("/training/:id", function(req, res){
   });
 });
 
-// TRAINING BAD ROUTE
+//===================
+//  COURSE ROUTES
+//===================
+
+//Course INDEX route
+app.get("/course", function(req, res){
+  res.redirect('/training');
+});
+
+//Course NEW route
+app.get("/course/new", function(req, res){
+  res.render("newCourse");
+});
+
+//Course CREATE route
+app.post("/course", function(req, res){
+
+  course.create(req.body.course, function (err, newCourse){
+    if(err){
+      console.log(err);
+    }else{
+      res.redirect("/course");
+    }
+  });
+});
+
+//Course SHOW route
+app.get("/course/:id", function(req, res){
+  course.findOne({"_id": req.params.id}).populate("training").exec(function(err, foundCourse){
+    res.render("showCourse", {course: foundCourse});
+  });
+});
+
+//Course EDIT route
+app.get("/course/:id/edit", function(req, res){
+  course.findOne({"_id": req.params.id}).populate("training").exec(function(err, foundCourse){
+    res.render("editCourse", {course: foundCourse});
+  });
+});
+
+
+//Course UPDATE route
+app.put("/course/:id", function(req, res){
+  course.findByIdAndUpdate(req.params.id, req.body.course, function(err, updatedCourse){
+    if(err){
+      console.log(err);
+      res.redirect("/course");
+    }else{
+      res.redirect("/course/" + req.params.id);
+    }
+  });
+});
+
+//Course DELETE route
+app.delete("/course/:id", function(req, res){
+  course.findByIdAndRemove(req.params.id, function(err){
+    if(err){
+      console.log(err);
+      res.redirect("/training");
+    }else{
+      res.redirect("/training");
+    }
+  });
+});
+
+//=======================
+//  Create User Routes
+//=======================
+
+// User Index
+
+app.get("/users", function(req, res){
+  res.render("indexUsers");
+});
+
+// User New
+
+// User Create
+
+// User Show
+
+// User Edit
+
+// User Update
+
+// User Destroy
+
+
+
+// BAD ROUTE
 app.get('*', function(req, res){
   res.send('bad route');
 });

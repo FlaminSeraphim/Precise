@@ -22,17 +22,20 @@ var trainingData = [
   {
     date: '04/08/2016',
     time: '08:00',
-    location: 'Barracuda swimming tank'
+    location: 'Barracuda swimming tank',
+    status: 'Scheduled'
   },
   {
     date: '04/10/2016',
     time: '13:30',
-    location: 'HIT offices'
+    location: 'HIT offices',
+    status: 'Scheduled'
   },
   {
     date: '04/12/2016',
     time: '1330',
-    location: 'Yo Mommas house'
+    location: 'Yo Mommas house',
+    status: 'Complete'
   }
 ];
 

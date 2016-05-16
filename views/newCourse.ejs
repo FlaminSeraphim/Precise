@@ -1,0 +1,12 @@
+<% include ./partials/header %>
+
+
+<form action="/course" method="POST">
+
+  <label>Name of Course: </label> <input type="text" name="course[name]"> <br>
+  <label>Course Description: </label> <input type="text" name="course[description]">
+  <input type="submit">
+
+</form>
+
+<% include ./partials/footer %>

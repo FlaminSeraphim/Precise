@@ -1,0 +1,10 @@
+<% include ./partials/header %>
+
+  <h1><%= course.name %></h1>
+  <h2><%= course.description %></h2>
+
+  <form action="/course/<%= course._id %>?_method=DELETE" method="POST">
+    <button> Delete </button>
+  </form>
+
+<% include ./partials/footer %>

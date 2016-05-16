@@ -6,6 +6,11 @@ var userSchema = new mongoose.Schema({
   username: String,
   password: String,
   instructor: Boolean,
+  manager: String,
+  emailAddress: String,
+  phone: Number,
+  administrator: Boolean,
+  isManager: Boolean,
   trainingsTaught: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "training"
