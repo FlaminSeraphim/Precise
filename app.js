@@ -43,7 +43,6 @@ app.get('/training', function(req, res){
     if(err){
       console.log(err);
     } else {
-      console.log(training);
       res.render('home', {training: training});
     }
   });
@@ -210,6 +209,16 @@ app.delete("/course/:id", function(req, res){
 // User Index
 
 app.get("/users", function(req, res){
+  app.get('/users', function(req, res){
+    user.find({}).populate("training").exec(function(err, foundUsers){
+      if(err){
+        console.log(err);
+      } else {
+        res.render('indexUsers', {users: foundUsers});
+      }
+    });
+  });
+
   res.render("indexUsers");
 });
 

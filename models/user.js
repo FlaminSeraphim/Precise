@@ -9,6 +9,9 @@ var userSchema = new mongoose.Schema({
   manager: String,
   emailAddress: String,
   phone: Number,
+  title: String,
+  department: String,
+  clinic: String,
   administrator: Boolean,
   isManager: Boolean,
   trainingsTaught: [{
