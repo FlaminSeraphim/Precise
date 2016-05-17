@@ -224,10 +224,29 @@ app.get("/users/new", function(req, res){
 });
 
 // User Create
+app.post("/users", function(req, res){
+  user.create(req.body.course, function (err, newUser){
+    if(err){
+      console.log(err);
+    }else{
+      res.redirect("/users");
+    }
+  });
+});
 
 // User Show
+app.get("/users/:id/edit", function(req, res){
+  user.findOne({"_id": req.params.id}).populate("training").exec(function(err, foundUser){
+    res.render("editUser", {user: foundUser});
+  });
+});
 
 // User Edit
+app.get("/users/:id/edit", function(req, res){
+  user.findOne({"_id": req.params.id}).populate("training").exec(function(err, foundUser){
+    res.render("editUser", {user: foundUser});
+  });
+});
 
 // User Update
 
