@@ -1,0 +1,21 @@
+<% include ./partials/header %>
+
+  <form action="/users" method="POST">
+    <label>First Name: <input type="text" name="users[firstname]"> </label> <br>
+    <label>Last Name: <input type="text" name="users[lastname]"> </label> <br>
+    <label>Okey username: <input type="text" name="users[username]"> </label> <br>
+    <label>Title: <input type="text" name="users[title]"> </label> <br>
+    <label>Password: <input type="text" name="users[password]"> </label> <br>
+    <label>Department: <input type="text" name="users[department]"> </label> <br>
+    <label>Clinic: <input type="text" name="users[clinic]"> </label> <br>
+    <label>Email Address: <input type="text" name="users[emailAddress]"> </label> <br>
+    <label>Instructor: <input type="text" name="users[instructor]"> </label> <br>
+    <label>Manager: <input type="text" name="users[manager]"> </label> <br>
+    <label>Cell Phone: <input type="number" name="users[]"> </label> <br>
+    <label>Is a Manager: <input type="checkbox" name="users[isManager]"> </label> <br>
+    <label>Is a Administrator <input type="checkbox" name="users[administrator]"> </label> <br>
+    <submit></submit>
+
+  </form>
+
+<% include ./partials/footer %>

@@ -207,20 +207,21 @@ app.delete("/course/:id", function(req, res){
 //=======================
 
 // User Index
-
-app.get("/users", function(req, res){
-  app.get('/users', function(req, res){
-    user.find({}).populate("training").exec(function(err, foundUsers){
-      if(err){
-        console.log(err);
-      } else {
-        res.render('indexUsers', {users: foundUsers});
-      }
-    });
+app.get('/users', function(req, res){
+  user.find({}).populate("training").exec(function(err, foundUsers){
+    if(err){
+      console.log(err);
+    } else {
+      res.render('indexUser', {users: foundUsers});
+    }
   });
 });
 
+
 // User New
+app.get("/users/new", function(req, res){
+  res.render("newUser");
+});
 
 // User Create
 
