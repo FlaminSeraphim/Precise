@@ -1,0 +1,10 @@
+<% include ./partials/header %>
+
+  <h1>User Show Route</h1>
+  <pre> <%= user %></pre>
+
+  <form action="/users/<%= user._id %>?_method=DELETE" method="POST">
+    <button> Delete </button>
+  </form>
+
+<% include ./partials/footer %>

@@ -203,7 +203,7 @@ app.delete("/course/:id", function(req, res){
 });
 
 //=======================
-//  Create User Routes
+//      User Routes
 //=======================
 
 // User Index
@@ -225,7 +225,7 @@ app.get("/users/new", function(req, res){
 
 // User Create
 app.post("/users", function(req, res){
-  user.create(req.body.course, function (err, newUser){
+  user.create(req.body.user, function (err, newUser){
     if(err){
       console.log(err);
     }else{
@@ -235,9 +235,9 @@ app.post("/users", function(req, res){
 });
 
 // User Show
-app.get("/users/:id/edit", function(req, res){
+app.get("/users/:id", function(req, res){
   user.findOne({"_id": req.params.id}).populate("training").exec(function(err, foundUser){
-    res.render("editUser", {user: foundUser});
+    res.render("showUser", {user: foundUser});
   });
 });
 
@@ -249,8 +249,28 @@ app.get("/users/:id/edit", function(req, res){
 });
 
 // User Update
+app.put("/users/:id", function(req, res){
+  user.findByIdAndUpdate(req.params.id, req.body.user, function(err, updatedUser){
+    if(err){
+      console.log(err);
+      res.redirect("/users");
+    }else{
+      res.redirect("/users/" + req.params.id);
+    }
+  });
+});
 
 // User Destroy
+app.delete("/users/:id", function(req, res){
+  user.findByIdAndRemove(req.params.id, function(err){
+    if(err){
+      console.log(err);
+      res.redirect("/users");
+    }else{
+      res.redirect("/users");
+    }
+  });
+});
 
 
 
