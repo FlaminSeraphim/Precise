@@ -55,8 +55,8 @@ app.get('/training/new', function(req, res){
       console.log(err);
     } else {
     res.render('newTraining', {training: training});
-  }
-});
+    }
+  });
 });
 
 // TRAINING CREATE ROUTE
@@ -64,12 +64,12 @@ app.post("/training", function(req, res){
 
   training.create(req.body.training, function (err, training){
     //This function looks up the course and inserts the training into the courses array.
-    course.findById(req.body.course.name, function (err, foundCourse){
+    course.findById(req.body.course.training, function (err, foundCourse){
       if(err){
         console.log(err);
       } else {
         foundCourse.training.push(training._id);
-        training.course.push(foundCourse._id);
+        //training.course.push(foundCourse._id);
         foundCourse.save(function(err, data){
           if(err){
             console.log(err);
@@ -229,7 +229,24 @@ app.post("/users", function(req, res){
     if(err){
       console.log(err);
     }else{
-      res.redirect("/users");
+      user.findById(newUser._id, function (err, foundUser){
+        for(i = 0; i < req.body.user.training.length; i++) {
+          if(err){
+            console.log(err);
+          } else {
+            if(req.body.user.training[i] !== ''){
+              foundUser.scheduledTrainings.push(req.body.user.training[i]);
+            }
+          }
+        }
+        foundUser.save(function(err, data){
+          if(err){
+            console.log(err);
+          } else {
+            res.redirect("/users");
+          }
+        });
+      });
     }
   });
 });
