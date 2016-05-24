@@ -6,5 +6,8 @@
   <form action="/course/<%= course._id %>?_method=DELETE" method="POST">
     <button> Delete </button>
   </form>
+  <form action="/course/<%= course._id %>/edit" method="GET">
+   <button> Edit </button>
+  </form>
 
 <% include ./partials/footer %>

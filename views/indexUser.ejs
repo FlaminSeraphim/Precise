@@ -2,12 +2,9 @@
 
   <h1>User Index Page</h1>
 
-  <pre> <%= users %> </pre>
-
-
   <% users.forEach(function(users){ %>
     <!-- User names-->
-    <h1> <%= users.firstname %> </h1>
+    <h1> <a href="/users/<%= users._id %>"> <%= users.firstname %> </a> </h1>
 
   <% }); %>
 

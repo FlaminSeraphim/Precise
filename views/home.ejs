@@ -1,14 +1,31 @@
 <% include ./partials/header %>
     <h1>Precise</h1>
 
-    <% var trainingClass = training %>
+    <form action="/users/" method="GET">
+      <button> All Users </button>
+    </form>
+    <form action="/users/new" method="GET">
+      <button> Create User </button>
+    </form>
+    <br>
+    <form action="/training/new" method="GET">
+         <button> Create Training </button>
+    </form>
+    <br>
+    <form action="/course/new" method="GET">
+         <button> Create Course </button>
+    </form>
+
+    <!-- <pre>
+        <%= training %>
+    </pre> -->
 
     <% training.forEach(function(training){ %>
      <!-- training description is the course name -->
-      <h1> <%= training.name %> </h1>
+      <h1> <a href="course/<%= training._id %>"><%= training.name %></a> </h1>
       <% training.training.forEach(function(training){ %>
-        <h2><a href="/training/<%= training._id %>"><%= training.location %></a></h2>
-        <h4> <%= training.date %> </h4>
+        <h3><a href="/training/<%= training._id %>"><%= training.location %></a></h3>
+        <h4> Date: <%= training.date %> Time: <%= training.time %> </h4>
       <% }); %>
 
     <% }); %>
