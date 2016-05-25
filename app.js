@@ -220,7 +220,9 @@ app.get('/users', function(req, res){
 
 // User New
 app.get("/users/new", function(req, res){
-  res.render("newUser");
+  course.find({}).populate("training").exec(function(err, foundCourse){
+    res.render("newUser", {training: foundCourse});
+  });
 });
 
 // User Create
