@@ -6,7 +6,12 @@
   <p>Date: <%= training.date %></p>
   <p>Date: <%= training.status %></p>
   <p>Course: <%= course.name %></p>
-  <p>Users: <%= users %></p>
+  <p>Users:
+    <% for(var i = 0; i < users.length; i++){ %>
+       <%= users[i].firstname %> <%= users[i].lastname %>,
+    <% } %>
+  </p>
+
 
   <form action="/training/<%= training._id %>?_method=DELETE" method="POST">
     <button> Delete </button>

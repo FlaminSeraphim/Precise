@@ -6,7 +6,11 @@
     <input type="text" name="training[date]" value="<%= training.date %>">
     <input type="text" name="training[status]" value="<%= training.status %>">
     <input type="text" value="<%= course.name %>" readonly>
-    <input type="text" value="<%= users %>" readonly>
+    <p> Users: <br>
+      <% for(var i = 0; i < users.length; i++){ %>
+        <input type = "checkbox" name = "training[users]" value = "<%= users[i]._id %>"> <%= users[i].firstname %> <%= users[i].lastname %>, <br>
+      <% } %>
+    </p>
     <input type="submit">
   </form>
 

@@ -85,9 +85,10 @@ app.post("/training", function(req, res){
 
 // TRAINING SHOW ROUTE
 app.get("/training/:id", function(req, res){
-  course.findOne({'training': req.params.id}, function(err, foundCourse){
-    user.findOne({'scheduledTrainings': req.params.id}, function(err, foundUsers){
+  course.findOne({ 'training': req.params.id}, function(err, foundCourse){
+    user.find({ scheduledTrainings: mongoose.Types.ObjectId(req.params.id)}, function(err, foundUsers){
       training.findById(req.params.id, function(err, foundTraining){
+        console.log(foundUsers);
         if (err){
           console.log(err);
         } else {
@@ -101,7 +102,7 @@ app.get("/training/:id", function(req, res){
 // TRAINING EDIT ROUTE
 app.get("/training/:id/edit", function(req, res){
   course.findOne({'training': req.params.id}, function(err, foundCourse){
-    user.findOne({'scheduledTrainings': req.params.id}, function(err, foundUsers){
+    user.find({}, function(err, foundUsers){
       training.findById(req.params.id, function(err, foundTraining){
         if (err){
           console.log(err);
@@ -120,6 +121,7 @@ app.put("/training/:id", function(req, res){
       console.log(err);
       res.redirect("/training");
     }else{
+      console.log(req.body.training.users);
       res.redirect("/training/" + req.params.id);
     }
   });
